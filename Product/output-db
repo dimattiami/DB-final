@@ -1,0 +1,23 @@
+Connected
+Connected
+Get Max Product Id Success 
+closing Product connection 
+
+Connected
+Product to be Inserted 
+
+26,3,Blue chair,Satin,100
+Connected
+Addition Success
+closing Product create statement 
+
+Product to be Inserted 
+
+27,4,Red chair,Satin,95
+Connected
+Addition Success
+closing Product create statement 
+
+ product 1 = 26,3,Blue chair,Satin,100
+ product 2 = 27,4,Red chair,Satin,95
+

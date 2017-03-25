@@ -1,0 +1,9 @@
+Product_ID:555,Product_Line_ID:100,Product_Description:ProductA,Product_Finish:FinishA,Product_Standard_Price:300
+Product_ID:556,Product_Line_ID:100,Product_Description:ProductB,Product_Finish:FinishB,Product_Standard_Price:800
+Product_ID:557,Product_Line_ID:100,Product_Description:ProductC,Product_Finish:FinishC,Product_Standard_Price:450
+Product_ID:558,Product_Line_ID:100,Product_Description:ProductD,Product_Finish:FinishD,Product_Standard_Price:200
+Sorting by price!
+Product_ID:558,Product_Line_ID:100,Product_Description:ProductD,Product_Finish:FinishD,Product_Standard_Price:200
+Product_ID:555,Product_Line_ID:100,Product_Description:ProductA,Product_Finish:FinishA,Product_Standard_Price:300
+Product_ID:557,Product_Line_ID:100,Product_Description:ProductC,Product_Finish:FinishC,Product_Standard_Price:450
+Product_ID:556,Product_Line_ID:100,Product_Description:ProductB,Product_Finish:FinishB,Product_Standard_Price:800
