@@ -51,7 +51,7 @@ public class SalariesTestDriver {
 		Connection conn;
  		conn = DBConnect.getConnection(hostname, port, sid, id, pwrd);
 		SalariesDAO salariesDAO = new SalariesDAO();
-		nextEmployeeId  = salariesDAO.findMaxEmployeeId();
+		//nextEmployeeId  = salariesDAO.findMaxEmployeeId();
 		nextEmployeeId = nextEmployeeId.add(increment);
 	    Salaries salary = new Salaries(nextEmployeeId);
 	    salary.setSalary(salaryAmt);
@@ -71,6 +71,7 @@ public class SalariesTestDriver {
 	    salary.setEndDate(tstamp);
 	    contacts.add(salary);
 	    
+	    salaryAmt = new BigDecimal(2);
 	    Salaries salary2 = new Salaries(nextEmployeeId.add(increment));
 	    salary2.setSalary(salaryAmt);
 	    /* set time stamp for start date */
@@ -88,7 +89,6 @@ public class SalariesTestDriver {
 	    tstamp = new Timestamp(tempCalendar.getTimeInMillis());
 	    salary2.setEndDate(tstamp);
 	    contacts.add(salary2);
-
 	    salariesDAO.saveSalaries(contacts);
 	    conn.commit();
 //	    Reports2DAO skills = new Reports2DAO();
@@ -97,38 +97,26 @@ public class SalariesTestDriver {
 	    	    
 	}
 
-	public void printContacts() throws Exception {
-		
-		
-		Iterator it=contacts.iterator();
+	public void printContacts() throws Exception {		
+		Iterator it = contacts.iterator();
 		int salariesNumber = 0;
-        while(it.hasNext())
-
-		{
+        while(it.hasNext()) {
 			salariesNumber++;
 			Salaries salary =(Salaries)it.next();
-
 			System.out.println(" Salary " + salariesNumber + " = " + salary.toString());
-		}
-	
+		}	
 	}
 	
-	public static void main(String[] args)  
-	{
-		
-	    /*  This command instantiates a class instance passing the connection object.  */   
+	public static void main(String[] args) {
+		/*  This command instantiates a class instance passing the connection object.  */   
 	    SalariesTestDriver testSalary = new SalariesTestDriver();
-
-        try {
-        	   
-			   /*  call purge method to delete all rows from new summary table   */    
-	    	   
-	    	   testSalary.setHostname(args[0]);
-	    	   testSalary.setPort(args[1]);
-	    	   testSalary.setSid(args[2]);
-	    	   testSalary.setId(args[3]);
-	    	   testSalary.setPwrd(args[4]);
-	    	    
+        try {        	   
+			   /*  call purge method to delete all rows from new summary table   */   	    	   
+	    	   testSalary.setHostname("localhost");
+	    	   testSalary.setPort("1521");
+	    	   testSalary.setSid("CSC342");
+	    	   testSalary.setId("team00");
+	    	   testSalary.setPwrd("team00");	    	    
 	    	   testSalary.testCreate();
 	    	   testSalary.printContacts();
 	    }
@@ -139,5 +127,4 @@ public class SalariesTestDriver {
          	 System.exit( 1 );
 	    }
 	}
-
-	}
+}

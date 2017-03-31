@@ -17,7 +17,7 @@ public class SalariesDAO {
         
 		try {            
         	con = DBConnect.getConnection();
-            ps=con.prepareStatement("insert into CSC342.salary (Employee_id, salary, employeeStartDate, employeeEndDate) values(?,?,?,?)");
+            ps=con.prepareStatement("insert into CSC342.employee_salary (employee_id, salary, salary_start_date, salary_end_date) values(?,?,?,?)");
             ps.setBigDecimal(1, salaries.getEmployeeId());
             ps.setBigDecimal(2, salaries.getSalary());
             ps.setTimestamp(3, salaries.getStartDate());
@@ -48,11 +48,10 @@ public BigDecimal findMaxEmployeeId() throws SQLException {
     BigDecimal maxEmployeeId = new BigDecimal(0);
     Connection con = null;
     PreparedStatement ps= null;
-    ResultSet rs=null;
-    
+    ResultSet rs=null;    
     try {
     	con = DBConnect.getConnection();
-    	ps=con.prepareStatement("select max(s.employee_id) from CSC342.Salary s");
+    	ps=con.prepareStatement("select max(employee_id) from CSC342.employee_salary");
         rs=ps.executeQuery();
         while(rs.next()) {
             maxEmployeeId = rs.getBigDecimal(1);
@@ -69,7 +68,7 @@ public BigDecimal findMaxEmployeeId() throws SQLException {
         System.out.println("unknown Error in get max employee");
         System.out.println("/nMessage: " + e.getMessage());
         System.exit( 1 );
-    } 
+    }
     finally {
 		if (con != null)
 			System.out.println("closing Employee connection \n");
@@ -86,9 +85,9 @@ public Salaries viewEmployee(BigDecimal employeeId) throws SQLException {
         PreparedStatement ps=null;
         try {    
         	con = DBConnect.getConnection();
-        	ps=con.prepareStatement("select s.employee_id, s.salary, s.employee_start_date, s.Employee_end_date" +
-            		"from CSC342.Salary s" +
-            		"where s.employee_id =?");
+        	ps=con.prepareStatement("select employee_id, salary, salary_start_date, salary_end_date" +
+            		"from CSC342.employee_salary" +
+            		"where employee_id =?");
             ps.setBigDecimal(1, employeeId);
 
             rs=ps.executeQuery();
@@ -128,13 +127,13 @@ public Salaries viewEmployee(BigDecimal employeeId) throws SQLException {
     	
         try {
         	con = DBConnect.getConnection();
-            ps=con.prepareStatement("update CSC342.salary set s.salary = ?," +
-        	"s.employee_start_date = ?, s.employee_end_date = ?" +
+            ps=con.prepareStatement("update CSC342.employee_salary set salary = ?," +
+        	"salary_start_date = ?, salary_end_date = ?" +
             		"where employee_id = ?");
-            ps.setTimestamp(3, empl.getStartDate());
-            ps.setTimestamp(4, empl.getEndDate());
             ps.setBigDecimal(1, empl.getEmployeeId());
             ps.setBigDecimal(2, empl.getSalary());
+            ps.setTimestamp(3, empl.getStartDate());
+            ps.setTimestamp(4, empl.getEndDate());
             ps.executeQuery();
             System.out.println("updated");
         }
@@ -163,7 +162,7 @@ public Salaries viewEmployee(BigDecimal employeeId) throws SQLException {
     	
         try {
         	con = DBConnect.getConnection();
-            ps=con.prepareStatement("delete CSC342.salary where employee_id=?");
+            ps=con.prepareStatement("delete CSC342.employee_salary where employee_id=?");
             ps.setBigDecimal(1, employeeId);
             ps.executeQuery();
             System.out.println("deleted");
@@ -190,7 +189,7 @@ public Salaries viewEmployee(BigDecimal employeeId) throws SQLException {
         	Connection con = null;
         	PreparedStatement ps= null;
         	ResultSet rs = null;
-        	String sql1 = "Select count(*) from CSC342.Salary s inner join CSC342.Employee e " + 
+        	String sql1 = "Select count(*) from CSC342.employee_salary s inner join CSC342.Employee e " + 
         				  " on (s.employee_id = e.employee_id)";
         	
             try {        
@@ -224,7 +223,7 @@ public Salaries viewEmployee(BigDecimal employeeId) throws SQLException {
 
     	public void saveSalaries(List<Salaries> salary) throws SQLException {        
         	Connection con = null;        	
-        	String sql1 = "Select count(*) as salary_count from CSC342.Salary s WHERE s.employee_id = ?";
+        	String sql1 = "Select count(*) as salary_count from CSC342.employee_salary  WHERE employee_id = ?";
         	PreparedStatement ps = null;
         	ResultSet rs = null;
 

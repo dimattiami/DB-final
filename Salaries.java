@@ -45,15 +45,12 @@ public class Salaries {
 	}
 	public void setEndDate(Timestamp endDate) {
 		this.endDate = endDate;
-	}
-	
+	}	
 	
 	public String toString() {
-		return ("Id: " + getEmployeeId() + "/n" + 
-	"Salary: " + getSalary() + "/n" +
-	"Start date: " + (new SimpleDateFormat("MM/dd/yyyy").format(getStartDate())) + "/n" +
-	"End date: " + (new SimpleDateFormat("MM/dd/yyyy").format(getEndDate())));
-	}
-
-	
+		return ("Id: " + getEmployeeId() + 
+	"\nSalary: " + getSalary() +
+	"\nStart date: " + (new SimpleDateFormat("MM/dd/yyyy").format(getStartDate())) +
+	"\nEnd date: " + (new SimpleDateFormat("MM/dd/yyyy").format(getEndDate())));
+	}	
 }
